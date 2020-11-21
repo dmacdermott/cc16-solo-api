@@ -1,0 +1,113 @@
+[
+    {
+        "projectName": "loscore-returns",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.loscore-returns",
+        "basic_req": true,
+        "adv_req": false,
+        "todo": true
+    },
+    {
+        "projectName": "tdd-vending-machine",
+        "link": "https://github.com/dmacdermott/cc16-mini.tdd-vending-machine",
+        "type": "mini",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "recursion-returns",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.recursion-returns",
+        "basic_req": true,
+        "med_req": false,
+        "adv_req": false,
+        "todo": true
+    },
+    {
+        "projectName": "data-structures",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.data-structures",
+        "basic_req": true,
+        "med_req": true,
+        "adv_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "visualize-sorting-algorithms",
+        "type": "project",
+        "link": "https://github.com/dmacdermott/cc16-project.visualize-sorting-algorithms",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "database-part-1",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.database-part-1",
+        "basic_req": true,
+        "adv_req": false,
+        "todo": true
+    },
+    {
+        "projectName": "populatron",
+        "type": "mini",
+        "link": "https://github.com/dmacdermott/cc16-mini.populatron",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "amazonian-async",
+        "type": "mini",
+        "link": "https://github.com/dmacdermott/cc16-mini.amazonian-async",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "assessment-1",
+        "type": "assessment",
+        "link": "https://github.com/dmacdermott/cc16-assessment.week-1",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "fetch-pokemon",
+        "type": "mini",
+        "link": "https://github.com/dmacdermott/cc16-mini.fetch-pokemon",
+        "basic_req": true,
+        "adv_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "assessment-2",
+        "type": "assessment",
+        "link": "https://github.com/dmacdermott/cc16-assessment.week-1",
+        "basic_req": true,
+        "todo": false
+    },
+    {
+        "projectName": "rest",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.rest",
+        "basic_req": true,
+        "med_req": false,
+        "adv_req": false,
+        "todo": true
+    },
+    {
+        "projectName": "graphql",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.graphql",
+        "basic_req": true,
+        "med_req": false,
+        "adv_req": false,
+        "nightmare": false,
+        "todo": true
+    },
+    {
+        "projectName": "database-orm",
+        "type": "sprint",
+        "link": "https://github.com/dmacdermott/cc16-sprint.database-orm",
+        "basic_req": false,
+        "adv_req": false,
+        "todo": true
+    }
+]
