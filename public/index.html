@@ -66,7 +66,9 @@
         <option value="assessment">Assessment</option>
       </select>
 
-      <label for="requirementsNotDone">/ Sort requirements not done:</label>
+      <label for="requirementsNotDone"
+        >/ Sort by requirements not done / to-do:</label
+      >
       <select
         name="requirementsNotDone"
         class="sort-by-select"
@@ -85,6 +87,7 @@
         <option value="med_req">Medium</option>
         <option value="adv_req">Advanced</option>
         <option value="nightmare">Nightmare</option>
+        <option value="todo">To-do</option>
       </select>
 
       <label for="searchByName">/ Search by name:</label>
@@ -94,11 +97,52 @@
 
     <main class="" id="project-area"></main>
 
-    <button id="load-projects-btn" onclick="getData()">Load Projects</button>
-    <button onclick="getAProject()">Load Project</button>
-    <button onclick="insertNewProject()">insertNewProject</button>
-    <button onclick="updateProject()">updatedProject</button>
-    <button onclick="deleteProject()">deleteProject</button>
+    <section id="edit-section">
+      <label for="projectName">Project Name</label>
+      <input type="text" id="edit-name" />
+      <label for="type">Type</label>
+      <input type="text" id="edit-type" />
+      <label for="GitHub">GitHub Link</label>
+      <input type="text" id="edit-link" />
+      <label for="Basic Requirements">Basic Requirements</label>
+      <select name="Basic Requirements" class="sort-by-select" id="edit-basic">
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+      </select>
+      <label for="Medium Requirements">Medium Requirements</label>
+
+      <select
+        name="Medium Requirements"
+        class="sort-by-select"
+        id="edit-medium"
+      >
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+        <option selected value="null">None</option>
+      </select>
+      <label for="Advanced Requirements">Advanced Requirements</label>
+
+      <select name="Advanced Requirements" class="sort-by-select" id="edit-adv">
+        <option value="true">Finished</option>
+        <option selected value="false">Unfinished</option>
+        <option value="null">None</option>
+      </select>
+    </section>
+      <label for="Nightmare">Nightmare</label>
+
+      <select name="nightmare Requirements" class="sort-by-select" id="edit-nightmare">
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+        <option selected value="null">None</option>
+      </select>
+    </section>
+      <label for="todo">To-Do</label>
+
+      <select name="To-Do" class="sort-by-select" id="edit-todo">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+    </section>
 
     <script src="./data.js" type="module"></script>
     <script src="./app.js" type="module"></script>
