@@ -4,12 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CC16 Progress Tracker</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>CC16 Progress Tracker</h1>
+    <div id="stats-wrapper">
+      <div class="stats">
+        <div class="stats-heading" id="basic-req">Basic Requirements</div>
+        <div class="stat"></div>
+      </div>
+      <div class="stats">
+        <div class="stats-heading" id="med-req">Medium Requirements</div>
+        <div class="stat"></div>
+      </div>
+      <div class="stats">
+        <div class="stats-heading" id="adv-req">Advanced Requirements</div>
+        <div class="stat"></div>
+      </div>
+      <div class="stats">
+        <div class="stats-heading" id="nightmare">Nightmare</div>
+        <div class="stat"></div>
+      </div>
+      <div class="stats">
+        <div class="stats-heading">To Dos</div>
+        <div class="stat"></div>
+      </div>
+    </div>
+
     <button onclick="getData()">Load Projects</button>
     <button onclick="getAProject()">Load Project</button>
     <button onclick="insertNewProject()">insertNewProject</button>
+    <button onclick="updateProject()">updatedProject</button>
+    <button onclick="deleteProject()">deleteProject</button>
 
     <!-- <form action="http://localhost:3000/projects" method="post">
         <label for="projectName">new project</label>
@@ -18,55 +44,8 @@
         <input type="text" name="link">
         <input type="submit">
     </form> -->
-    <script>
-      let data;
-      async function getData() {
-        const response = await fetch("http://localhost:3000/projects", {
-          method: "GET",
-        })
-          .then(data => data.json())
-          .then(response => {
-            console.log(response);
-            data = response;
-            return data;
-          })
-          .catch(e => console.log(e));
-      }
-      const id = 1;
-      async function getAProject() {
-        const response = await fetch(`http://localhost:3000/projects/${id}`, {
-          method: "GET",
-        })
-          .then(data => data.json())
-          .then(response => {
-            console.log(response);
-            data = response;
-            return data;
-          })
-          .catch(e => console.log(e));
-      }
-      let newProject = {
-        projectName: "testProject",
-        type: "test",
-        link: "test.com",
-        basic_req: true,
-        adv_req: true,
-        todo: true,
-      };
-      async function insertNewProject() {
-        const response = await fetch(`http://localhost:3000/projects/`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newProject),
-        })
-          .then(data => data.json())
-          .then(response => {
-            console.log("response from post" + response);
-            data = response;
-            return data;
-          })
-          .catch(e => console.log(e));
-      }
-    </script>
+
+    <script src="./data.js" type="module"></script>
+    <script src="./app.js" type="module"></script>
   </body>
 </html>

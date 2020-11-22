@@ -18,21 +18,32 @@ createConnection().then(async connection => {
     //GET
     //Get all projects
      app.get("/projects", async function(req, res) {
-         console.log(req, res)
-        const projects = await projectsRepository.find();
+    const projects = await projectsRepository.find();
      res.json(projects)
     });
     //Get one project
     app.get("/projects/:id", async function(req, res) {
-        console.log(req.params)
         const results = await projectsRepository.findOne(req.params.id);
         return res.send(results);
     });
+    //Post project
     app.post("/projects", async function(req, res) {
         console.log(req.body)
         const project = await projectsRepository.create(req.body)
         const results = await projectsRepository.save(project);
         return res.send(results)
+    });
+    //Put project
+    app.put(`/projects/:id`, async function(req, res) {
+        const results = await projectsRepository.findOne(req.params.id);
+        projectsRepository.merge(results, req.body)
+       const updatedProject =  projectsRepository.save(results)
+        return res.send(updatedProject);
+    });
+       //Delete project
+       app.delete("/projects/:id", async function(req, res) {
+        const results = await projectsRepository.delete(req.params.id);
+        return res.send(results);
     });
 
 
