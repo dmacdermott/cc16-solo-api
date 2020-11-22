@@ -1,8 +1,8 @@
 import {
   getData,
   getAllProjectsByType,
-  // getAProjectByName,
   getAProject,
+  getByRequirement,
 } from "./data.js";
 
 async function getStartingData() {
@@ -114,8 +114,8 @@ const loadProjects = function (data) {
   });
 };
 
-const selector = document.getElementById("sort-by-select-type");
 // Sort by type select
+const selector = document.getElementById("sort-by-select-type");
 selector.addEventListener("change", async event => {
   let type = event.target.value;
   if (type === "all") {
@@ -127,8 +127,8 @@ selector.addEventListener("change", async event => {
   loadProjects(typeProjects);
 });
 
+// Search by name or id
 const searchButton = document.getElementById("search-for-project");
-// Sort by type select
 searchButton.addEventListener("click", async () => {
   let name = document.getElementById("search-by-name").value;
 
@@ -136,5 +136,18 @@ searchButton.addEventListener("click", async () => {
   console.log(projectByName);
   projectArea.innerHTML = "";
   loadProjects([projectByName]);
+});
+
+// Sort by unfinished requirements
+const reqSelector = document.getElementById("sort-by-select-req");
+reqSelector.addEventListener("change", async event => {
+  let req = event.target.value;
+  if (req === "all") {
+    projectArea.innerHTML = "";
+    return getStartingData();
+  }
+  let reqProjects = await getByRequirement(req);
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
 });
 getStartingData();

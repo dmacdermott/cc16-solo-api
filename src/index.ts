@@ -26,7 +26,7 @@ createConnection().then(async connection => {
     const projects = await projectsRepository.find(req.params);
      res.json(projects)
     });
-    
+
     //Get one project by id or name
     app.get("/projects/:idOrName", async function(req, res) {
         if(isNaN(req.params.idOrName)){
@@ -36,6 +36,14 @@ createConnection().then(async connection => {
         }
         const results = await projectsRepository.findOne(req.params);
         return res.send(results);
+    });
+
+      //Get uncompleted projects by requirements
+      app.get("/requirements/:requirement", async function(req, res) {
+          let key = req.params.requirement
+            const obj = { [key]: false }
+        const projects = await projectsRepository.find(obj);
+        res.json(projects)
     });
    
     //Post project

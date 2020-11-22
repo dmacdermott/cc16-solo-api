@@ -37,6 +37,19 @@ async function getAllProjectsByType(type) {
   return response;
 }
 
+async function getByRequirement(req) {
+  const response = await fetch(`http://localhost:3000/requirements/${req}`, {
+    method: "GET",
+  })
+    .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+    .catch(e => console.log(e));
+  return response;
+}
+
 let newProject = {
   projectName: "testProject",
   type: "test",
@@ -96,5 +109,5 @@ export {
   updateProject,
   insertNewProject,
   getAllProjectsByType,
-  // getAProjectByName,
+  getByRequirement,
 };
