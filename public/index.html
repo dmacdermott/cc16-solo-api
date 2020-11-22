@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CC16 Progress Tracker</title>
+  </head>
+  <body>
+    <h1>CC16 Progress Tracker</h1>
+    <button onclick="getData()">Load Projects</button>
+    <button onclick="getAProject()">Load Project</button>
+
+    <!-- <form action="http://localhost:3000/projects" method="post">
+        <label for="projectName">new project</label>
+        <input type="text" name="projectName">
+        <label for="link">Link</label>
+        <input type="text" name="link">
+        <input type="submit">
+    </form> -->
+    <script>
+      let data;
+      async function getData() {
+        const response = await fetch("http://localhost:3000/projects", {
+          method: "GET",
+        })
+          .then(data => data.json())
+          .then(response => {
+            console.log(response);
+            data = response;
+            return data;
+          })
+          .catch(e => console.log(e));
+      }
+      const id = 1;
+      async function getAProject() {
+        const response = await fetch(`http://localhost:3000/projects/${id}`, {
+          method: "GET",
+        })
+          .then(data => data.json())
+          .then(response => {
+            console.log(response);
+            data = response;
+            return data;
+          })
+          .catch(e => console.log(e));
+      }
+    </script>
+  </body>
+</html>

@@ -18,8 +18,8 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "makeMigrations": "yarn migration:generate",
-      "migrate": "yarn migration:run",
+      "makeMigrations": "yarn typeorm migration:generate",
+      "migrate": "yarn typeorm migration:run",
       "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
       "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
       "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
