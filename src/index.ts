@@ -21,9 +21,19 @@ createConnection().then(async connection => {
     const projects = await projectsRepository.find();
      res.json(projects)
     });
-    //Get one project
+    // Get all projects of one type
+     app.get("/projects/:type", async function(req, res) {
+    const projects = await projectsRepository.find(req.params);
+     res.json(projects)
+    });
+    //Get one project by id
     app.get("/projects/:id", async function(req, res) {
-        const results = await projectsRepository.findOne(req.params.id);
+        const results = await projectsRepository.findOne(req.params);
+        return res.send(results);
+    });
+    //Get one project by project name
+    app.get("/projects/:projectName", async function(req, res) {
+        const results = await projectsRepository.find(req.params);
         return res.send(results);
     });
     //Post project

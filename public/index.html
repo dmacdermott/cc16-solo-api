@@ -4,46 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CC16 Progress Tracker</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>CC16 Progress Tracker</h1>
-    <div id="stats-wrapper">
-      <div class="stats">
-        <div class="stats-heading" id="basic-req">Basic Requirements</div>
-        <div class="stat"></div>
-      </div>
-      <div class="stats">
-        <div class="stats-heading" id="med-req">Medium Requirements</div>
-        <div class="stat"></div>
-      </div>
-      <div class="stats">
-        <div class="stats-heading" id="adv-req">Advanced Requirements</div>
-        <div class="stat"></div>
-      </div>
-      <div class="stats">
-        <div class="stats-heading" id="nightmare">Nightmare</div>
-        <div class="stat"></div>
-      </div>
-      <div class="stats">
-        <div class="stats-heading">To Dos</div>
-        <div class="stat"></div>
-      </div>
-    </div>
+    <h1 id="app-title">CC16 Progress Tracker</h1>
+    <h2 id="req-title">Requirements</h2>
 
-    <button onclick="getData()">Load Projects</button>
+    <section id="stats-wrapper">
+      <div class="stats">
+        <h3 class="stats-heading">Basic</h3>
+        <div class="stat" id="basic-req-stat"></div>
+      </div>
+      <div class="stats">
+        <h3 class="stats-heading">Medium</h3>
+        <div class="stat" id="med-req-stat"></div>
+      </div>
+      <div class="stats">
+        <h3 class="stats-heading">Advanced</h3>
+        <div class="stat" id="adv-req-stat"></div>
+      </div>
+      <div class="stats">
+        <h3 class="stats-heading">Nightmare</h3>
+        <div class="stat" id="nightmare-stat"></div>
+      </div>
+      <div class="stats">
+        <h3 class="stats-heading">To-Dos</h3>
+        <div class="stat" id="to-do-stat"></div>
+      </div>
+    </section>
+    <section id="sort-by-section">
+      <h2 id="sort-by-title">Sort By</h2>
+      <label for="types">Sort projects by type:</label>
+      <select name="types" id="sort-by-select">
+        <option
+          selected
+          disabled
+          hidden
+          style="display: none"
+          value=""
+        ></option>
+
+        <option value="mini">Mini</option>
+        <option value="sprint">Sprint</option>
+        <option value="project">Project</option>
+        <option value="assessment">Assessment</option>
+      </select>
+    </section>
+
+    <main class="" id="project-area"></main>
+
+    <button id="load-projects-btn" onclick="getData()">Load Projects</button>
     <button onclick="getAProject()">Load Project</button>
     <button onclick="insertNewProject()">insertNewProject</button>
     <button onclick="updateProject()">updatedProject</button>
     <button onclick="deleteProject()">deleteProject</button>
-
-    <!-- <form action="http://localhost:3000/projects" method="post">
-        <label for="projectName">new project</label>
-        <input type="text" name="projectName">
-        <label for="link">Link</label>
-        <input type="text" name="link">
-        <input type="submit">
-    </form> -->
 
     <script src="./data.js" type="module"></script>
     <script src="./app.js" type="module"></script>

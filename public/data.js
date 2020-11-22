@@ -11,14 +11,26 @@ async function getData() {
   return response;
 }
 
-const id = 1;
-async function getAProject() {
+async function getAProject(id) {
   const response = await fetch(`http://localhost:3000/projects/${id}`, {
     method: "GET",
   })
     .then(data => data.json())
     .then(data => console.log(data))
     .catch(e => console.log(e));
+  return response;
+}
+async function getAllProjectsByType(type) {
+  const response = await fetch(`http://localhost:3000/projects/${type}`, {
+    method: "GET",
+  })
+    .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+    .catch(e => console.log(e));
+  return response;
 }
 
 let newProject = {
@@ -50,6 +62,7 @@ const updatedObj = {
   adv_req: false,
   todo: false,
 };
+
 async function updateProject() {
   const response = await fetch(`http://localhost:3000/projects/${putId}`, {
     method: "PUT",
@@ -72,4 +85,11 @@ async function deleteProject() {
   return response;
 }
 
-export { getData, getAProject, deleteProject, updateProject, insertNewProject };
+export {
+  getData,
+  getAProject,
+  deleteProject,
+  updateProject,
+  insertNewProject,
+  getAllProjectsByType,
+};
