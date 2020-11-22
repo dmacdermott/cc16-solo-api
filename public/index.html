@@ -9,6 +9,7 @@
     <h1>CC16 Progress Tracker</h1>
     <button onclick="getData()">Load Projects</button>
     <button onclick="getAProject()">Load Project</button>
+    <button onclick="insertNewProject()">insertNewProject</button>
 
     <!-- <form action="http://localhost:3000/projects" method="post">
         <label for="projectName">new project</label>
@@ -39,6 +40,28 @@
           .then(data => data.json())
           .then(response => {
             console.log(response);
+            data = response;
+            return data;
+          })
+          .catch(e => console.log(e));
+      }
+      let newProject = {
+        projectName: "testProject",
+        type: "test",
+        link: "test.com",
+        basic_req: true,
+        adv_req: true,
+        todo: true,
+      };
+      async function insertNewProject() {
+        const response = await fetch(`http://localhost:3000/projects/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newProject),
+        })
+          .then(data => data.json())
+          .then(response => {
+            console.log("response from post" + response);
             data = response;
             return data;
           })

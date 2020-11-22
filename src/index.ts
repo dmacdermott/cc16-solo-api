@@ -34,10 +34,7 @@ createConnection().then(async connection => {
         const results = await projectsRepository.save(project);
         return res.send(results)
     });
-    app.get("/projects", async function(req, res) {
-        const projects = await projectsRepository.find();
-     res.json(projects)
-    });
+
 
     //Start server
     const port = 3000
