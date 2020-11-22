@@ -22,20 +22,22 @@ createConnection().then(async connection => {
      res.json(projects)
     });
     // Get all projects of one type
-     app.get("/projects/:type", async function(req, res) {
+     app.get("/types/:type", async function(req, res) {
     const projects = await projectsRepository.find(req.params);
      res.json(projects)
     });
-    //Get one project by id
-    app.get("/projects/:id", async function(req, res) {
+    
+    //Get one project by id or name
+    app.get("/projects/:idOrName", async function(req, res) {
+        if(isNaN(req.params.idOrName)){
+            req.params = {projectName: req.params.idOrName}
+        } else {
+            req.params = {id: req.params.idOrName}
+        }
         const results = await projectsRepository.findOne(req.params);
         return res.send(results);
     });
-    //Get one project by project name
-    app.get("/projects/:projectName", async function(req, res) {
-        const results = await projectsRepository.find(req.params);
-        return res.send(results);
-    });
+   
     //Post project
     app.post("/projects", async function(req, res) {
         console.log(req.body)

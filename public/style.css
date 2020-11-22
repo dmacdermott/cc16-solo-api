@@ -1,9 +1,29 @@
+/* ["00ccff","00ffcc","ffff00","ff00cc","cc00ff"] */
+
 body {
   font-family: "Roboto Mono", monospace;
 }
 
 #app-title {
   text-align: center;
+}
+#app-title > span {
+  border-bottom: 5px solid #00ccff;
+}
+#basic-stat-underline {
+  border-bottom: 5px solid #00ffcc;
+}
+#medium-stat-underline {
+  border-bottom: 5px solid #ffff00;
+}
+#advanced-stat-underline {
+  border-bottom: 5px solid #ff00cc;
+}
+#nightmare-stat-underline {
+  border-bottom: 5px solid #cc00ff;
+}
+#todo-stat-underline {
+  border-bottom: 5px solid #4a08e4;
 }
 #req-title {
   padding-left: 25px;
@@ -22,8 +42,12 @@ body {
   margin-left: 25px;
   margin-right: 25px;
 }
+.stats-heading {
+  text-align: center;
+}
 .stat {
   text-align: center;
+  font-style: italic;
 }
 
 #project-area {
@@ -34,20 +58,33 @@ body {
 
 .project-card {
   margin: 25px;
-  border: 1px solid green;
+  border: 1px solid black;
   padding: 10px;
+  position: relative;
 }
-h5 {
+
+.project-header > h1 > a {
+  color: black;
+  text-decoration: none;
 }
 
 .project-header > h5 {
   color: #949494;
 }
 
+.edit-wrapper {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+}
+.edit-wrapper > a {
+  color: black;
+}
+
 .progress-wrapper {
   display: flex;
   flex-wrap: nowrap;
-  border-top: 1px solid green;
+  border-top: 1px solid black;
 }
 .req {
   margin: 5px;
@@ -58,7 +95,16 @@ h5 {
   margin-top: 0;
 }
 
+#sort-by-section {
+  margin: 25px;
+}
+
 #main-area {
   display: flex;
   justify-content: center;
+}
+
+#search-for-project {
+  background-color: white;
+  border: 1px solid black;
 }

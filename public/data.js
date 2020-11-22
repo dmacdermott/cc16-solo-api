@@ -11,17 +11,21 @@ async function getData() {
   return response;
 }
 
-async function getAProject(id) {
-  const response = await fetch(`http://localhost:3000/projects/${id}`, {
+async function getAProject(idOrName) {
+  const response = await fetch(`http://localhost:3000/projects/${idOrName}`, {
     method: "GET",
   })
     .then(data => data.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      return data;
+    })
     .catch(e => console.log(e));
   return response;
 }
+
 async function getAllProjectsByType(type) {
-  const response = await fetch(`http://localhost:3000/projects/${type}`, {
+  const response = await fetch(`http://localhost:3000/types/${type}`, {
     method: "GET",
   })
     .then(data => data.json())
@@ -92,4 +96,5 @@ export {
   updateProject,
   insertNewProject,
   getAllProjectsByType,
+  // getAProjectByName,
 };

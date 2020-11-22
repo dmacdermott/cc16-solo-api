@@ -12,35 +12,45 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 id="app-title">CC16 Progress Tracker</h1>
+    <h1 id="app-title"><span>CC16 Progress Tracker</span></h1>
     <h2 id="req-title">Requirements</h2>
 
     <section id="stats-wrapper">
       <div class="stats">
-        <h3 class="stats-heading">Basic</h3>
+        <h3 class="stats-heading">
+          <span id="basic-stat-underline">Basic</span>
+        </h3>
         <div class="stat" id="basic-req-stat"></div>
       </div>
       <div class="stats">
-        <h3 class="stats-heading">Medium</h3>
+        <h3 class="stats-heading">
+          <span id="medium-stat-underline">Medium</span>
+        </h3>
         <div class="stat" id="med-req-stat"></div>
       </div>
       <div class="stats">
-        <h3 class="stats-heading">Advanced</h3>
+        <h3 class="stats-heading">
+          <span id="advanced-stat-underline">Advanced</span>
+        </h3>
         <div class="stat" id="adv-req-stat"></div>
       </div>
       <div class="stats">
-        <h3 class="stats-heading">Nightmare</h3>
+        <h3 class="stats-heading">
+          <span id="nightmare-stat-underline">Nightmare</span>
+        </h3>
         <div class="stat" id="nightmare-stat"></div>
       </div>
       <div class="stats">
-        <h3 class="stats-heading">To-Dos</h3>
+        <h3 class="stats-heading">
+          <span id="todo-stat-underline">To-Dos</span>
+        </h3>
         <div class="stat" id="to-do-stat"></div>
       </div>
     </section>
     <section id="sort-by-section">
-      <h2 id="sort-by-title">Sort By</h2>
+      <h2 id="sort-by-title">Sort / Search By</h2>
       <label for="types">Sort projects by type:</label>
-      <select name="types" id="sort-by-select">
+      <select name="types" class="sort-by-select" id="sort-by-select-type">
         <option
           selected
           disabled
@@ -48,12 +58,38 @@
           style="display: none"
           value=""
         ></option>
+        <option value="all">All</option>
 
         <option value="mini">Mini</option>
         <option value="sprint">Sprint</option>
         <option value="project">Project</option>
         <option value="assessment">Assessment</option>
       </select>
+
+      <label for="requirementsNotDone">/ Sort requirements not done:</label>
+      <select
+        name="requirementsNotDone"
+        class="sort-by-select"
+        id="sort-by-select-req"
+      >
+        <option
+          selected
+          disabled
+          hidden
+          style="display: none"
+          value=""
+        ></option>
+        <option value="all">All</option>
+
+        <option value="basic">Basic</option>
+        <option value="medium">Medium</option>
+        <option value="advanced">Advanced</option>
+        <option value="nightmare">Nightmare</option>
+      </select>
+
+      <label for="searchByName">/ Search by name:</label>
+      <input id="search-by-name" type="search" />
+      <input type="button" value="Search" id="search-for-project" />
     </section>
 
     <main class="" id="project-area"></main>
