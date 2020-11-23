@@ -7,6 +7,6 @@ It is created using a RESTFUL API that allows users to view, add, edit and delet
 Each project has the ability to add requirements and keep track of them.👌 
 
 
-![image](https://user-images.githubusercontent.com/8098110/99941321-2c434700-2db1-11eb-9d56-4c4c1b962141.png)
+![image](https://user-images.githubusercontent.com/8098110/99971332-5bbd7800-2de0-11eb-942c-3b307f248401.png)
 
 
