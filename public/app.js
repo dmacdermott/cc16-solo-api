@@ -8,8 +8,8 @@ import {
   deleteProject,
 } from "./data.js";
 
+//LOAD STATS AND STARTING DATA
 async function getStartingData() {
-  //Load stats and starting data
   let projects = await getData();
   let basicReqTotal = 0;
   let medReqTotal = 0;
@@ -50,18 +50,7 @@ async function getStartingData() {
       todoTotal++;
     }
   });
-  //set html
-  console.log(
-    basicReqTotal,
-    basicReqComplete,
-    medReqTotal,
-    medReqComplete,
-    advReqTotal,
-    advReqComplete,
-    nightmareTotal,
-    nightmareComplete,
-    todoTotal
-  );
+  //SET STATS
   document.getElementById(
     "basic-req-stat"
   ).innerHTML = `${basicReqComplete} / ${basicReqTotal}`;
@@ -85,6 +74,8 @@ async function getStartingData() {
       )
     );
 }
+
+//LOAD PROJECTS
 const projectArea = document.getElementById("project-area");
 const loadProjects = async function (data) {
   await data.forEach(data => {
@@ -123,7 +114,7 @@ const loadProjects = async function (data) {
   });
 };
 
-// Sort by type select
+// SORT PROJECTS BY TYPE
 const selector = document.getElementById("sort-by-select-type");
 selector.addEventListener("change", async event => {
   let type = event.target.value;
@@ -143,7 +134,7 @@ selector.addEventListener("change", async event => {
     );
 });
 
-// Search by name or id
+// SEARCH PROJECT BY NAME OR ID
 const searchButton = document.getElementById("search-for-project");
 searchButton.addEventListener("click", async () => {
   let name = document.getElementById("search-by-name").value;
@@ -162,66 +153,33 @@ searchButton.addEventListener("click", async () => {
 });
 
 // Sort by unfinished requirements
-const reqSelector = document.getElementById("sort-by-select-req");
-reqSelector.addEventListener("change", async event => {
-  let req = event.target.value;
-  if (req === "all") {
-    projectArea.innerHTML = "";
-    return getStartingData();
-  }
-  let reqProjects = await getByRequirement(req);
-  projectArea.innerHTML = "";
-  loadProjects(reqProjects);
-  document
-    .querySelectorAll(".edit-link")
-    .forEach(element =>
-      element.addEventListener("click", () =>
-        edit(element.getAttribute("value"))
-      )
-    );
-});
+// REMOVED THIS FEATURE and IMPLEMENTED FEATURE ON STATS HEADING
+// const reqSelector = document.getElementById("sort-by-select-req");
+// reqSelector.addEventListener("change", async event => {
+//   let req = event.target.value;
+//   if (req === "all") {
+//     projectArea.innerHTML = "";
+//     return getStartingData();
+//   }
+//   let reqProjects = await getByRequirement(req);
+//   projectArea.innerHTML = "";
+//   loadProjects(reqProjects);
+//   document
+//     .querySelectorAll(".edit-link")
+//     .forEach(element =>
+//       element.addEventListener("click", () =>
+//         edit(element.getAttribute("value"))
+//       )
+//     );
+// });
 
-// //Make editable
-let projectToEditOrDelete;
-const editSection = document.getElementById("edit-section");
-
-async function edit(projectName) {
-  event.preventDefault();
-  editSection.classList.toggle("hide-class");
-  //get project data
-  const data = await getAProject(projectName);
-  //set global variable to use when submitting edit
-  projectToEditOrDelete = data.id;
-
-  console.log(data);
-  let editLink = document.getElementById("edit-link");
-  editLink.value = data.link;
-  let editName = document.getElementById("edit-name");
-  editName.value = data.projectName;
-
-  let editType = document.getElementById("edit-type");
-  editType.value = data.type;
-  let editBasicReq = document.getElementById("edit-basic");
-  editBasicReq.value = data.basic_req;
-  let editMediumReq = document.getElementById("edit-medium");
-  editMediumReq.value = data.med_req;
-  let editAdvReq = document.getElementById("edit-adv");
-  editAdvReq = data.adv_req;
-  let editNightmare = document.getElementById("edit-nightmare");
-  editNightmare = data.nightmare;
-  let editToDo = document.getElementById("edit-todo");
-  editToDo.value = data.todo;
-}
-
+// ADD NEW PROJECT TO DATABASE
 const addProjectButton = document.getElementById("add-project-button");
 const addSection = document.getElementById("add-section");
-
 const addNewProject = () => {
   addSection.classList.toggle("hide-class");
 };
-
 const submitProjectButton = document.getElementById("submit-project-button");
-
 const submitNewProject = () => {
   let projectName = document.getElementById("add-name").value;
   let type = document.getElementById("add-type").value;
@@ -244,11 +202,44 @@ const submitNewProject = () => {
   };
   insertNewProject(submitObj);
   addSection.classList.toggle("hide-class");
-  getStartingData();
+  location.reload();
 };
 addProjectButton.addEventListener("click", () => addNewProject());
 submitProjectButton.addEventListener("click", () => submitNewProject());
 
+// GET PROJECT DETAILS WHEN CLICK EDIT BUTTON TO FILL EDIT FORM
+let projectToEditOrDelete;
+const editSection = document.getElementById("edit-section");
+
+async function edit(projectName) {
+  event.preventDefault();
+  editSection.classList.toggle("hide-class");
+  //get project data
+  const data = await getAProject(projectName);
+  //set global variable to use when submitting edit/deleting
+  projectToEditOrDelete = data.id;
+
+  console.log(data);
+  let editLink = document.getElementById("edit-link");
+  editLink.value = data.link;
+  let editName = document.getElementById("edit-name");
+  editName.value = data.projectName;
+
+  let editType = document.getElementById("edit-type");
+  editType.value = data.type;
+  let editBasicReq = document.getElementById("edit-basic");
+  editBasicReq.value = data.basic_req;
+  let editMediumReq = document.getElementById("edit-medium");
+  editMediumReq.value = data.med_req;
+  let editAdvReq = document.getElementById("edit-adv");
+  editAdvReq = data.adv_req;
+  let editNightmare = document.getElementById("edit-nightmare");
+  editNightmare = data.nightmare;
+  let editToDo = document.getElementById("edit-todo");
+  editToDo.value = data.todo;
+}
+
+//SUBMIT EDITS TO DATABASE
 const submitEditButton = document.getElementById("submit-edit-button");
 const submitEdits = () => {
   let projectName = document.getElementById("edit-name").value;
@@ -274,15 +265,96 @@ const submitEdits = () => {
   updateProject(projectToEditOrDelete, editObj);
   editSection.classList.toggle("hide-class");
 };
-
 submitEditButton.addEventListener("click", () => submitEdits());
 
 //DELETE PROJECT
-
 const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
   deleteProject(projectToEditOrDelete);
   editSection.classList.toggle("hide-class");
+});
+
+//ClOSE EDIT/DELETE POP UP
+const closeEditButton = document.getElementById("close-edit-btn");
+closeEditButton.addEventListener("click", () => {
+  editSection.classList.toggle("hide-class");
+  event.preventDefault();
+});
+
+//ClOSE ADD PROJECT POP UP
+const closeAddButton = document.getElementById("close-project-btn");
+closeAddButton.addEventListener("click", () => {
+  addSection.classList.toggle("hide-class");
+  event.preventDefault();
+});
+
+//ADD LINKS TO SORT FROM STAT
+
+const basicStat = document.getElementById("basic-stat-underline");
+const mediumStat = document.getElementById("medium-stat-underline");
+const advStat = document.getElementById("advanced-stat-underline");
+const nightmareStat = document.getElementById("nightmare-stat-underline");
+const todoStat = document.getElementById("todo-stat-underline");
+
+basicStat.addEventListener("click", async () => {
+  let reqProjects = await getByRequirement("basic_req");
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
+});
+mediumStat.addEventListener("click", async () => {
+  let reqProjects = await getByRequirement("med_req");
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
+});
+advStat.addEventListener("click", async () => {
+  let reqProjects = await getByRequirement("adv_req");
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
+});
+nightmareStat.addEventListener("click", async () => {
+  let reqProjects = await getByRequirement("nightmare");
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
+});
+todoStat.addEventListener("click", async () => {
+  let reqProjects = await getByRequirement("todo");
+  projectArea.innerHTML = "";
+  loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
 });
 
 getStartingData();

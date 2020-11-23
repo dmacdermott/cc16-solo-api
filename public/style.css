@@ -1,5 +1,7 @@
 /* ["00ccff","00ffcc","ffff00","ff00cc","cc00ff"] */
-
+html {
+  overflow-y: scroll;
+}
 body {
   font-family: "Roboto Mono", monospace;
 }
@@ -44,6 +46,7 @@ body {
 }
 .stats-heading {
   text-align: center;
+  cursor: pointer;
 }
 .stat {
   text-align: center;
@@ -102,6 +105,13 @@ body {
 
 #sort-by-section {
   margin: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#sort-by-section > div {
+  margin: 10px;
 }
 
 #main-area {
@@ -123,9 +133,16 @@ body {
   flex-direction: column;
   position: fixed;
   top: 25%;
-  left: 25%;
+  left: 20%;
   background-color: #00ccff;
   padding: 50px;
+}
+
+#edit-section > * {
+  padding: 2px;
+}
+#add-section > * {
+  padding: 2px;
 }
 .hide-class {
   visibility: hidden;
@@ -136,7 +153,33 @@ body {
   flex-direction: column;
   position: fixed;
   top: 25%;
-  left: 25%;
+  left: 20%;
   background-color: #00ccff;
   padding: 50px;
+}
+.close-popup {
+  position: absolute;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.svg-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #ffffff;
+}
+.popup-row {
+  display: flex;
+  flex-direction: row;
+}
+.first-col {
+  min-width: 300px;
+}
+.popup-row > div {
+  margin: 5px;
 }

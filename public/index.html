@@ -15,6 +15,8 @@
     <h1 id="app-title"><span>CC16 Progress Tracker</span></h1>
     <h2 id="req-title">Requirements</h2>
 
+    <!-- AREA TO SHOW STATS  -->
+
     <section id="stats-wrapper">
       <div class="stats">
         <h3 class="stats-heading">
@@ -47,26 +49,34 @@
         <div class="stat" id="to-do-stat"></div>
       </div>
     </section>
+
+    <!-- OPTIONS TO SORT PROJECTS  -->
+    <h2 id="sort-by-title">Sort / Search By</h2>
+
     <section id="sort-by-section">
-      <h2 id="sort-by-title">Sort / Search By</h2>
-      <label for="types">Sort projects by type:</label>
-      <select name="types" class="sort-by-select" id="sort-by-select-type">
-        <option
-          selected
-          disabled
-          hidden
-          style="display: none"
-          value=""
-        ></option>
-        <option value="all">All</option>
+      <div class="sort-col">
+        <label for="types">Sort projects by type:</label>
+        <select name="types" class="sort-by-select" id="sort-by-select-type">
+          <option
+            selected
+            disabled
+            hidden
+            style="display: none"
+            value=""
+          ></option>
+          <option value="all">All</option>
 
-        <option value="mini">Mini</option>
-        <option value="sprint">Sprint</option>
-        <option value="project">Project</option>
-        <option value="assessment">Assessment</option>
-      </select>
+          <option value="mini">Mini</option>
+          <option value="sprint">Sprint</option>
+          <option value="project">Project</option>
+          <option value="assessment">Assessment</option>
+        </select>
+      </div>
 
-      <label for="requirementsNotDone"
+      <!-- 
+        REMOVED DROPDOWN AND INSTEAD CLICK REQUIREMENT IN STATS BAR 
+
+        <label for="requirementsNotDone"
         >/ Sort by requirements not done / to-do:</label
       >
       <select
@@ -88,121 +98,216 @@
         <option value="adv_req">Advanced</option>
         <option value="nightmare">Nightmare</option>
         <option value="todo">To-do</option>
-      </select>
-
-      <label for="searchByName">/ Search by name:</label>
-      <input id="search-by-name" type="search" />
-      <input type="button" value="Search" id="search-for-project" />
-
-      <label for="Add Project">/ Add New Project:</label>
-      <button type="button" value="Add Project" id="add-project-button">
-        Add Project
-      </button>
+      </select> -->
+      <div class="sort-col">
+        <label for="searchByName">/ Search by name:</label>
+        <input id="search-by-name" type="search" />
+        <input type="button" value="Search" id="search-for-project" />
+      </div>
+      <div class="sort-col">
+        <label for="Add Project">/ Add New Project:</label>
+        <button type="button" value="Add Project" id="add-project-button">
+          Add Project
+        </button>
+      </div>
     </section>
+
+    <!-- MAIN AREA WHERE PROJECTS LOAD  -->
 
     <main class="" id="project-area"></main>
 
+    <!-- EDIT OR DELETE PROJECT POP UP -->
+
     <section id="edit-section" class="hide-class">
-      <label for="projectName">Project Name</label>
-      <input type="text" id="edit-name" />
-      <label for="type">Type</label>
-      <input type="text" id="edit-type" />
-      <label for="GitHub">GitHub Link</label>
-      <input type="text" id="edit-link" />
-      <label for="Basic Requirements">Basic Requirements</label>
-      <select name="Basic Requirements" class="sort-by-select" id="edit-basic">
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-      </select>
-      <label for="Medium Requirements">Medium Requirements</label>
+      <a href="" class="close-popup" id="close-edit-btn"
+        ><svg class="svg-icon" viewBox="0 0 20 20">
+          <path
+            fill="none"
+            d="M11.469,10l7.08-7.08c0.406-0.406,0.406-1.064,0-1.469c-0.406-0.406-1.063-0.406-1.469,0L10,8.53l-7.081-7.08
+        c-0.406-0.406-1.064-0.406-1.469,0c-0.406,0.406-0.406,1.063,0,1.469L8.531,10L1.45,17.081c-0.406,0.406-0.406,1.064,0,1.469
+        c0.203,0.203,0.469,0.304,0.735,0.304c0.266,0,0.531-0.101,0.735-0.304L10,11.469l7.08,7.081c0.203,0.203,0.469,0.304,0.735,0.304
+        c0.267,0,0.532-0.101,0.735-0.304c0.406-0.406,0.406-1.064,0-1.469L11.469,10z"
+          ></path>
+        </svg>
+      </a>
 
-      <select
-        name="Medium Requirements"
-        class="sort-by-select"
-        id="edit-medium"
-      >
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-        <option selected value="null">None</option>
-      </select>
-      <label for="Advanced Requirements">Advanced Requirements</label>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="edit-name" />
+        </div>
+        <div>
+          <label for="type">Type</label>
+          <input type="text" id="edit-type" />
+        </div>
+      </div>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="GitHub">GitHub Link</label>
+          <input type="text" id="edit-link" />
+        </div>
+        <div>
+          <label for="todo">To-Do</label>
+          <select name="To-Do" class="sort-by-select" id="edit-todo">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
 
-      <select name="Advanced Requirements" class="sort-by-select" id="edit-adv">
-        <option value="true">Finished</option>
-        <option selected value="false">Unfinished</option>
-        <option value="null">None</option>
-      </select>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="Basic Requirements">Basic Requirements</label>
+          <select
+            name="Basic Requirements"
+            class="sort-by-select"
+            id="edit-basic"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+          </select>
+        </div>
+        <div>
+          <label for="Medium Requirements">Medium Requirements</label>
 
-      <label for="Nightmare">Nightmare</label>
+          <select
+            name="Medium Requirements"
+            class="sort-by-select"
+            id="edit-medium"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+            <option selected value="null">None</option>
+          </select>
+        </div>
+      </div>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="Advanced Requirements">Advanced Requirements</label>
 
-      <select
-        name="nightmare Requirements"
-        class="sort-by-select"
-        id="edit-nightmare"
-      >
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-        <option selected value="null">None</option>
-      </select>
+          <select
+            name="Advanced Requirements"
+            class="sort-by-select"
+            id="edit-adv"
+          >
+            <option value="true">Finished</option>
+            <option selected value="false">Unfinished</option>
+            <option value="null">None</option>
+          </select>
+        </div>
+        <div>
+          <label for="Nightmare">Nightmare</label>
 
-      <label for="todo">To-Do</label>
-
-      <select name="To-Do" class="sort-by-select" id="edit-todo">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
+          <select
+            name="nightmare Requirements"
+            class="sort-by-select"
+            id="edit-nightmare"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+            <option selected value="null">None</option>
+          </select>
+        </div>
+      </div>
       <label for="">Edit Project!</label>
       <input type="button" value="Submit Edit" id="submit-edit-button" />
       <label for="">DELETE PROJECT</label>
       <input type="button" value="DELETE PROJECT" id="delete-button" />
     </section>
 
+    <!-- ADD NEW PROJECT POP UP -->
+
     <section id="add-section" class="hide-class">
-      <label for="projectName">Project Name</label>
-      <input type="text" id="add-name" />
-      <label for="type">Type</label>
-      <input type="text" id="add-type" />
-      <label for="GitHub">GitHub Link</label>
-      <input type="text" id="add-link" />
-      <label for="Basic Requirements">Basic Requirements</label>
-      <select name="Basic Requirements" class="sort-by-select" id="add-basic">
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-      </select>
-      <label for="Medium Requirements">Medium Requirements</label>
+      <a href="" class="close-popup" id="close-project-btn"
+        ><svg class="svg-icon" viewBox="0 0 20 20">
+          <path
+            fill="none"
+            d="M11.469,10l7.08-7.08c0.406-0.406,0.406-1.064,0-1.469c-0.406-0.406-1.063-0.406-1.469,0L10,8.53l-7.081-7.08
+        c-0.406-0.406-1.064-0.406-1.469,0c-0.406,0.406-0.406,1.063,0,1.469L8.531,10L1.45,17.081c-0.406,0.406-0.406,1.064,0,1.469
+        c0.203,0.203,0.469,0.304,0.735,0.304c0.266,0,0.531-0.101,0.735-0.304L10,11.469l7.08,7.081c0.203,0.203,0.469,0.304,0.735,0.304
+        c0.267,0,0.532-0.101,0.735-0.304c0.406-0.406,0.406-1.064,0-1.469L11.469,10z"
+          ></path>
+        </svg>
+      </a>
 
-      <select name="Medium Requirements" class="sort-by-select" id="add-medium">
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-        <option selected value="null">None</option>
-      </select>
-      <label for="Advanced Requirements">Advanced Requirements</label>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="add-name" />
+        </div>
+        <div>
+          <label for="type">Type</label>
+          <input type="text" id="add-type" />
+        </div>
+      </div>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="GitHub">GitHub Link</label>
+          <input type="text" id="add-link" />
+        </div>
+        <div>
+          <label for="todo">To-Do</label>
+          <select name="To-Do" class="sort-by-select" id="add-todo">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
 
-      <select name="Advanced Requirements" class="sort-by-select" id="add-adv">
-        <option value="true">Finished</option>
-        <option selected value="false">Unfinished</option>
-        <option value="null">None</option>
-      </select>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="Basic Requirements">Basic Requirements</label>
+          <select
+            name="Basic Requirements"
+            class="sort-by-select"
+            id="add-basic"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+          </select>
+        </div>
+        <div>
+          <label for="Medium Requirements">Medium Requirements</label>
 
-      <label for="Nightmare">Nightmare</label>
+          <select
+            name="Medium Requirements"
+            class="sort-by-select"
+            id="add-medium"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+            <option selected value="null">None</option>
+          </select>
+        </div>
+      </div>
+      <div class="popup-row">
+        <div class="first-col">
+          <label for="Advanced Requirements">Advanced Requirements</label>
 
-      <select
-        name="Add Nightmare Requirements"
-        class="sort-by-select"
-        id="add-nightmare"
-      >
-        <option value="true">Finished</option>
-        <option value="false">Unfinished</option>
-        <option selected value="null">None</option>
-      </select>
+          <select
+            name="Advanced Requirements"
+            class="sort-by-select"
+            id="add-adv"
+          >
+            <option value="true">Finished</option>
+            <option selected value="false">Unfinished</option>
+            <option value="null">None</option>
+          </select>
+        </div>
+        <div>
+          <label for="Nightmare">Nightmare</label>
 
-      <label for="todo">To-Do</label>
-
-      <select name="Add To-Do" class="sort-by-select" id="add-todo">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-
+          <select
+            name="nightmare Requirements"
+            class="sort-by-select"
+            id="add-nightmare"
+          >
+            <option value="true">Finished</option>
+            <option value="false">Unfinished</option>
+            <option selected value="null">None</option>
+          </select>
+        </div>
+      </div>
       <label for="">Add Project!</label>
       <input type="button" value="Add" id="submit-project-button" />
     </section>
