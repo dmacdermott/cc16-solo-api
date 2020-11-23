@@ -9,8 +9,10 @@ body {
 #app-title {
   text-align: center;
 }
+
 #app-title > span {
   border-bottom: 5px solid #00ccff;
+  cursor: pointer;
 }
 #basic-stat-underline {
   border-bottom: 5px solid #00ffcc;

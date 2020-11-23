@@ -357,4 +357,11 @@ todoStat.addEventListener("click", async () => {
     );
 });
 
+const titleButton = document.getElementById("app-title-span");
+titleButton.addEventListener("click", () => {
+  projectArea.innerHTML = "";
+
+  getStartingData();
+});
+
 getStartingData();
