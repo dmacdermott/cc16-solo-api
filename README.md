@@ -1,7 +1,12 @@
-# Awesome Project Build with TypeORM
+# Code Chrysalis Project Tracker 📝
+This was created during my time as a student at Code Chrysalis 👨‍💻.
 
-Steps to run this project:
+It was built to keep track of the requirements for all the projects at CC.😰
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+It is created using a RESTFUL API that allows users to view, add, edit and delete projects.
+Each project has the ability to add requirements and keep track of them.👌 
+
+
+![image](https://user-images.githubusercontent.com/8098110/99941321-2c434700-2db1-11eb-9d56-4c4c1b962141.png)
+
+
