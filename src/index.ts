@@ -42,6 +42,9 @@ createConnection().then(async connection => {
       app.get("/requirements/:requirement", async function(req, res) {
           let key = req.params.requirement
             const obj = { [key]: false }
+            if(key === "todo"){
+                obj[key] = true;
+            }
         const projects = await projectsRepository.find(obj);
         res.json(projects)
     });

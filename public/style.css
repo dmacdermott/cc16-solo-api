@@ -185,3 +185,16 @@ body {
 .popup-row > div {
   margin: 5px;
 }
+
+.null-style {
+  color: #949494;
+  text-decoration: line-through;
+}
+
+.project-name > span {
+  margin-left: 5px;
+}
+
+.project-name:hover {
+  color: #4a08e4;
+}

@@ -88,30 +88,43 @@ const loadProjects = async function (data) {
     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
   </svg></a></div>
       <div class="project-header">
-        <h1><a href="${data.link}" target="_blank" contenteditable="false">${data.projectName}</a></h1>
-        <h5 contenteditable="false">${data.type}</h5>
-        
+        <h1><a href="${data.link}" target="_blank"  class="project-name">${data.projectName}<span class="todo${data.todo}"> </span></a></h1>
+        <h5 >${data.type}</h5>
       </div>
       <div class="progress-wrapper">
         <div class="req">
           <h4>BASIC</h4>
-          <div class="status" id="basic-status"contenteditable="false">${data.basic_req}</div>
+          <div class="status basic-status">${data.basic_req}</div>
         </div>
         <div class="req">
           <h4>MEDIUM</h4>
-          <div class="status" id="med-status"contenteditable="false">${data.med_req}</div>
+          <div class="status med-status">${data.med_req}</div>
         </div>
         <div class="req">
           <h4>ADVANCED</h4>
-          <div class="status" id="adv-status"contenteditable="false">${data.adv_req}</div>
+          <div class="status adv-status">${data.adv_req}</div>
         </div>
         <div class="req">
           <h4>NIGHTMARE</h4>
-          <div class="status" id="nightmare-status"contenteditable="false">${data.nightmare}</div>
+          <div class="status nightmare-status">${data.nightmare}</div>
         </div>
       </div>
       `;
   });
+  const statusArr = document.querySelectorAll(".status");
+  statusArr.forEach(element => {
+    if (element.innerHTML === "null") {
+      element.classList.add("null-style");
+    }
+    // if (element.innerHTML === "true") {
+    //   element.innerHTML = "👍";
+    // }
+    // if (element.innerHTML === "false") {
+    //   element.innerHTML = "👎";
+    // }
+  });
+  const todoArr = document.querySelectorAll(".todotrue");
+  todoArr.forEach(element => (element.innerHTML = "📝"));
 };
 
 // SORT PROJECTS BY TYPE
@@ -263,7 +276,9 @@ const submitEdits = () => {
   };
   console.log(projectToEditOrDelete, editObj);
   updateProject(projectToEditOrDelete, editObj);
+
   editSection.classList.toggle("hide-class");
+  location.reload();
 };
 submitEditButton.addEventListener("click", () => submitEdits());
 
@@ -272,6 +287,7 @@ const deleteButton = document.getElementById("delete-button");
 deleteButton.addEventListener("click", () => {
   deleteProject(projectToEditOrDelete);
   editSection.classList.toggle("hide-class");
+  location.reload();
 });
 
 //ClOSE EDIT/DELETE POP UP
@@ -360,7 +376,6 @@ todoStat.addEventListener("click", async () => {
 const titleButton = document.getElementById("app-title-span");
 titleButton.addEventListener("click", () => {
   projectArea.innerHTML = "";
-
   getStartingData();
 });
 
