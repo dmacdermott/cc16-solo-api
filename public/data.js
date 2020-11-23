@@ -23,7 +23,7 @@ async function getAProject(idOrName) {
 }
 
 async function getAllProjectsByType(type) {
-  const response = await fetch(`http://localhost:3000/types/${type}`, {
+  const response = await fetch(`http://localhost:3000/projects?type=${type}`, {
     method: "GET",
   })
     .then(data => data.json())
@@ -35,9 +35,12 @@ async function getAllProjectsByType(type) {
 }
 
 async function getByRequirement(req) {
-  const response = await fetch(`http://localhost:3000/requirements/${req}`, {
-    method: "GET",
-  })
+  const response = await fetch(
+    `http://localhost:3000/projects?requirement=${req}`,
+    {
+      method: "GET",
+    }
+  )
     .then(data => data.json())
     .then(data => {
       return data;
