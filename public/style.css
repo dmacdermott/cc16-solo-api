@@ -13,6 +13,7 @@ body {
 #app-title > span {
   border-bottom: 5px solid #00ccff;
   cursor: pointer;
+  letter-spacing: 10px;
 }
 #basic-stat-underline {
   border-bottom: 5px solid #00ffcc;
@@ -40,6 +41,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 25px;
 }
 .stats {
   margin-bottom: 25px;
@@ -95,6 +97,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   border-top: 1px solid black;
+  justify-content: center;
 }
 .req {
   margin: 5px;
@@ -136,8 +139,9 @@ body {
   position: fixed;
   top: 25%;
   left: 20%;
-  background-color: #00ccff;
+  background-color: #ffffff;
   padding: 50px;
+  box-shadow: 0px 0px 3px 0px #949494;
 }
 
 #edit-section > * {
@@ -156,8 +160,9 @@ body {
   position: fixed;
   top: 25%;
   left: 20%;
-  background-color: #00ccff;
+  background-color: #ffffff;
   padding: 50px;
+  box-shadow: 0px 0px 3px 0px #949494;
 }
 .close-popup {
   position: absolute;
@@ -173,7 +178,7 @@ body {
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-  fill: #ffffff;
+  fill: #303030;
 }
 .popup-row {
   display: flex;
@@ -185,10 +190,13 @@ body {
 .popup-row > div {
   margin: 5px;
 }
-
+.status {
+  font-size: 25px;
+}
 .null-style {
   color: #949494;
   text-decoration: line-through;
+  font-size: 17px;
 }
 
 .project-name > span {

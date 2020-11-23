@@ -114,14 +114,15 @@ const loadProjects = async function (data) {
   const statusArr = document.querySelectorAll(".status");
   statusArr.forEach(element => {
     if (element.innerHTML === "null") {
-      element.classList.add("null-style");
+      element.innerHTML = "➖";
+      // element.classList.add("null-style");
     }
-    // if (element.innerHTML === "true") {
-    //   element.innerHTML = "👍";
-    // }
-    // if (element.innerHTML === "false") {
-    //   element.innerHTML = "👎";
-    // }
+    if (element.innerHTML === "true") {
+      element.innerHTML = "👍";
+    }
+    if (element.innerHTML === "false") {
+      element.innerHTML = "🚫";
+    }
   });
   const todoArr = document.querySelectorAll(".todotrue");
   todoArr.forEach(element => (element.innerHTML = "📝"));
