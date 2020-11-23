@@ -3,6 +3,7 @@ import {
   getAllProjectsByType,
   getAProject,
   getByRequirement,
+  insertNewProject,
 } from "./data.js";
 
 async function getStartingData() {
@@ -131,6 +132,13 @@ selector.addEventListener("change", async event => {
   let typeProjects = await getAllProjectsByType(type);
   projectArea.innerHTML = "";
   loadProjects(typeProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
 });
 
 // Search by name or id
@@ -142,6 +150,13 @@ searchButton.addEventListener("click", async () => {
   console.log(projectByName);
   projectArea.innerHTML = "";
   loadProjects([projectByName]);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
 });
 
 // Sort by unfinished requirements
@@ -155,11 +170,20 @@ reqSelector.addEventListener("change", async event => {
   let reqProjects = await getByRequirement(req);
   projectArea.innerHTML = "";
   loadProjects(reqProjects);
+  document
+    .querySelectorAll(".edit-link")
+    .forEach(element =>
+      element.addEventListener("click", () =>
+        edit(element.getAttribute("value"))
+      )
+    );
 });
 
 // //Make editable
 async function edit(projectName) {
   event.preventDefault();
+  const editSection = document.getElementById("edit-section");
+  editSection.classList.toggle("hide-class");
   //get project data
   const data = await getAProject(projectName);
   console.log(data);
@@ -172,13 +196,48 @@ async function edit(projectName) {
   let editBasicReq = document.getElementById("edit-basic");
   editBasicReq.value = data.basic_req;
   let editMediumReq = document.getElementById("edit-medium");
-  editMediumReq.value = `${data.med_req}`;
+  editMediumReq.value = data.med_req;
   let editAdvReq = document.getElementById("edit-adv");
-  editAdvReq = `${data.adv_req}`;
+  editAdvReq = data.adv_req;
   let editNightmare = document.getElementById("edit-nightmare");
-  editNightmare = `${data.nightmare}`;
+  editNightmare = data.nightmare;
   let editToDo = document.getElementById("edit-todo");
-  editToDo.value = `${data.todo}`;
+  editToDo.value = data.todo;
 }
 
+const addProjectButton = document.getElementById("add-project-button");
+const addSection = document.getElementById("add-section");
+
+const addNewProject = () => {
+  addSection.classList.toggle("hide-class");
+};
+const submitProjectButton = document.getElementById("submit-project-button");
+
+const submitNewProject = () => {
+  let projectName = document.getElementById("add-name").value;
+  let type = document.getElementById("add-type").value;
+  let link = document.getElementById("add-link").value;
+  let basic_req = document.getElementById("add-basic").value;
+  let med_req = document.getElementById("add-medium").value;
+  let adv_req = document.getElementById("add-adv").value;
+  let nightmare = document.getElementById("add-nightmare").value;
+  let todo = document.getElementById("add-todo").value;
+
+  let submitObj = {
+    projectName: projectName || "newProject",
+    type: type || "type",
+    link: link || "https://github.com/dmacdermott/",
+    basic_req: JSON.parse(basic_req) || true,
+    med_req: JSON.parse(med_req) || null,
+    adv_req: JSON.parse(adv_req) || false,
+    nightmare: JSON.parse(nightmare) || null,
+    todo: JSON.parse(todo) || false,
+  };
+  insertNewProject(submitObj);
+  addSection.classList.toggle("hide-class");
+  getStartingData();
+};
+
+addProjectButton.addEventListener("click", () => addNewProject());
+submitProjectButton.addEventListener("click", () => submitNewProject());
 getStartingData();

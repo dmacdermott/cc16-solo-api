@@ -3,7 +3,7 @@ import {createConnection} from "typeorm";
 // import {User} from "./entity/User";
 import * as express from "express";
 import Projects from "./entity/Projects";
-
+var cors = require('cors')
 
 //Create connection to db
 createConnection().then(async connection => {
@@ -12,7 +12,7 @@ createConnection().then(async connection => {
     //Create and setup server
     const app = express()
     app.use(express.json());
-
+    app.use(cors());
     
     //Rest Routes
     //GET

@@ -93,11 +93,16 @@
       <label for="searchByName">/ Search by name:</label>
       <input id="search-by-name" type="search" />
       <input type="button" value="Search" id="search-for-project" />
+
+      <label for="Add Project">/ Add New Project:</label>
+      <button type="button" value="Add Project" id="add-project-button">
+        Add Project
+      </button>
     </section>
 
     <main class="" id="project-area"></main>
 
-    <section id="edit-section">
+    <section id="edit-section" class="hide-class">
       <label for="projectName">Project Name</label>
       <input type="text" id="edit-name" />
       <label for="type">Type</label>
@@ -127,21 +132,77 @@
         <option selected value="false">Unfinished</option>
         <option value="null">None</option>
       </select>
-    </section>
+
       <label for="Nightmare">Nightmare</label>
 
-      <select name="nightmare Requirements" class="sort-by-select" id="edit-nightmare">
+      <select
+        name="nightmare Requirements"
+        class="sort-by-select"
+        id="edit-nightmare"
+      >
         <option value="true">Finished</option>
         <option value="false">Unfinished</option>
         <option selected value="null">None</option>
       </select>
-    </section>
+
       <label for="todo">To-Do</label>
 
       <select name="To-Do" class="sort-by-select" id="edit-todo">
         <option value="true">Yes</option>
         <option value="false">No</option>
       </select>
+      <label for="">Edit Project!</label>
+      <input type="button" value="Submit Edit" id="submit-project-button" />
+    </section>
+
+    <section id="add-section" class="hide-class">
+      <label for="projectName">Project Name</label>
+      <input type="text" id="add-name" />
+      <label for="type">Type</label>
+      <input type="text" id="add-type" />
+      <label for="GitHub">GitHub Link</label>
+      <input type="text" id="add-link" />
+      <label for="Basic Requirements">Basic Requirements</label>
+      <select name="Basic Requirements" class="sort-by-select" id="add-basic">
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+      </select>
+      <label for="Medium Requirements">Medium Requirements</label>
+
+      <select name="Medium Requirements" class="sort-by-select" id="add-medium">
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+        <option selected value="null">None</option>
+      </select>
+      <label for="Advanced Requirements">Advanced Requirements</label>
+
+      <select name="Advanced Requirements" class="sort-by-select" id="add-adv">
+        <option value="true">Finished</option>
+        <option selected value="false">Unfinished</option>
+        <option value="null">None</option>
+      </select>
+
+      <label for="Nightmare">Nightmare</label>
+
+      <select
+        name="Add Nightmare Requirements"
+        class="sort-by-select"
+        id="add-nightmare"
+      >
+        <option value="true">Finished</option>
+        <option value="false">Unfinished</option>
+        <option selected value="null">None</option>
+      </select>
+
+      <label for="todo">To-Do</label>
+
+      <select name="Add To-Do" class="sort-by-select" id="add-todo">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
+
+      <label for="">Add Project!</label>
+      <input type="button" value="Add" id="submit-project-button" />
     </section>
 
     <script src="./data.js" type="module"></script>

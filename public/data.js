@@ -50,24 +50,15 @@ async function getByRequirement(req) {
   return response;
 }
 
-let newProject = {
-  projectName: "testProject",
-  type: "test",
-  link: "test.com",
-  basic_req: true,
-  adv_req: true,
-  todo: true,
-};
-
-async function insertNewProject() {
+async function insertNewProject(newProject) {
   const response = await fetch(`http://localhost:3000/projects/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newProject),
   })
     .then(data => data.json())
-    .then(data => console.log(data))
     .catch(e => console.log(e));
+  return response;
 }
 
 const putId = 16;

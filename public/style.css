@@ -50,6 +50,11 @@ body {
   font-style: italic;
 }
 
+#add-project-button {
+  background-color: white;
+  border: 1px solid black;
+}
+
 #project-area {
   display: flex;
   flex-direction: row;
@@ -107,4 +112,31 @@ body {
 #search-for-project {
   background-color: white;
   border: 1px solid black;
+}
+#submit-project-button {
+  background-color: white;
+  border: 1px solid black;
+}
+
+#edit-section {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  background-color: #00ccff;
+  padding: 50px;
+}
+.hide-class {
+  visibility: hidden;
+}
+
+#add-section {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  background-color: #00ccff;
+  padding: 50px;
 }
