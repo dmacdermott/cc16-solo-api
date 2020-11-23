@@ -4,7 +4,6 @@ async function getData() {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
       return data;
     })
     .catch(e => console.log(e));
@@ -17,7 +16,6 @@ async function getAProject(idOrName) {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
       return data;
     })
     .catch(e => console.log(e));
@@ -30,7 +28,6 @@ async function getAllProjectsByType(type) {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
       return data;
     })
     .catch(e => console.log(e));
@@ -43,7 +40,6 @@ async function getByRequirement(req) {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
       return data;
     })
     .catch(e => console.log(e));
@@ -61,34 +57,23 @@ async function insertNewProject(newProject) {
   return response;
 }
 
-const putId = 16;
-const updatedObj = {
-  projectName: "UPDATED!!!",
-  type: "update",
-  link: "update link",
-  basic_req: false,
-  adv_req: false,
-  todo: false,
-};
-
-async function updateProject() {
-  const response = await fetch(`http://localhost:3000/projects/${putId}`, {
+async function updateProject(projectId, edits) {
+  const response = await fetch(`http://localhost:3000/projects/${projectId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedObj),
+    body: JSON.stringify(edits),
   })
     .then(data => data.json())
-    .then(data => console.log(data))
     .catch(e => console.log(e));
+  return response;
 }
-const deleteId = 26;
-async function deleteProject() {
-  const response = await fetch(`http://localhost:3000/projects/${deleteId}`, {
+
+async function deleteProject(id) {
+  const response = await fetch(`http://localhost:3000/projects/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
     .then(data => data.json())
-    .then(data => console.log(data))
     .catch(e => console.log(e));
   return response;
 }

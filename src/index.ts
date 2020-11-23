@@ -48,21 +48,20 @@ createConnection().then(async connection => {
    
     //Post project
     app.post("/projects", async function(req, res) {
-        console.log(req.body)
         const project = await projectsRepository.create(req.body)
         const results = await projectsRepository.save(project);
         return res.send(results)
     });
     //Put project
-    app.put(`/projects/:id`, async function(req, res) {
-        const results = await projectsRepository.findOne(req.params.id);
+    app.put("/projects/:id", async function(req, res) {
+        const results = await projectsRepository.findOne(req.params);
         projectsRepository.merge(results, req.body)
        const updatedProject =  projectsRepository.save(results)
         return res.send(updatedProject);
     });
        //Delete project
        app.delete("/projects/:id", async function(req, res) {
-        const results = await projectsRepository.delete(req.params.id);
+        const results = await projectsRepository.delete(req.params);
         return res.send(results);
     });
 

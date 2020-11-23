@@ -4,6 +4,8 @@ import {
   getAProject,
   getByRequirement,
   insertNewProject,
+  updateProject,
+  deleteProject,
 } from "./data.js";
 
 async function getStartingData() {
@@ -180,17 +182,23 @@ reqSelector.addEventListener("change", async event => {
 });
 
 // //Make editable
+let projectToEditOrDelete;
+const editSection = document.getElementById("edit-section");
+
 async function edit(projectName) {
   event.preventDefault();
-  const editSection = document.getElementById("edit-section");
   editSection.classList.toggle("hide-class");
   //get project data
   const data = await getAProject(projectName);
+  //set global variable to use when submitting edit
+  projectToEditOrDelete = data.id;
+
   console.log(data);
   let editLink = document.getElementById("edit-link");
   editLink.value = data.link;
   let editName = document.getElementById("edit-name");
   editName.value = data.projectName;
+
   let editType = document.getElementById("edit-type");
   editType.value = data.type;
   let editBasicReq = document.getElementById("edit-basic");
@@ -211,6 +219,7 @@ const addSection = document.getElementById("add-section");
 const addNewProject = () => {
   addSection.classList.toggle("hide-class");
 };
+
 const submitProjectButton = document.getElementById("submit-project-button");
 
 const submitNewProject = () => {
@@ -237,7 +246,43 @@ const submitNewProject = () => {
   addSection.classList.toggle("hide-class");
   getStartingData();
 };
-
 addProjectButton.addEventListener("click", () => addNewProject());
 submitProjectButton.addEventListener("click", () => submitNewProject());
+
+const submitEditButton = document.getElementById("submit-edit-button");
+const submitEdits = () => {
+  let projectName = document.getElementById("edit-name").value;
+  let type = document.getElementById("edit-type").value;
+  let link = document.getElementById("edit-link").value;
+  let basic_req = document.getElementById("edit-basic").value;
+  let med_req = document.getElementById("edit-medium").value;
+  let adv_req = document.getElementById("edit-adv").value;
+  let nightmare = document.getElementById("edit-nightmare").value;
+  let todo = document.getElementById("edit-todo").value;
+
+  let editObj = {
+    projectName: projectName,
+    type: type,
+    link: link,
+    basic_req: JSON.parse(basic_req),
+    med_req: JSON.parse(med_req),
+    adv_req: JSON.parse(adv_req),
+    nightmare: JSON.parse(nightmare),
+    todo: JSON.parse(todo),
+  };
+  console.log(projectToEditOrDelete, editObj);
+  updateProject(projectToEditOrDelete, editObj);
+  editSection.classList.toggle("hide-class");
+};
+
+submitEditButton.addEventListener("click", () => submitEdits());
+
+//DELETE PROJECT
+
+const deleteButton = document.getElementById("delete-button");
+deleteButton.addEventListener("click", () => {
+  deleteProject(projectToEditOrDelete);
+  editSection.classList.toggle("hide-class");
+});
+
 getStartingData();
