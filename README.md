@@ -1,4 +1,4 @@
-# Code Chrysalis Project Tracker 📝
+# 📝 Code Chrysalis Project Tracker 
 This was created during my time as a student at Code Chrysalis 👨‍💻.
 
 It was built to keep track of the requirements for all the projects at CC.😰
