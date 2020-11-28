@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Stats from "./components/Stats";
 
 function App() {
+  const [projects, setProjects] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:3030/projects", {
+      method: "GET",
+    })
+      .then(data => data.json())
+      .then(data => setProjects(data))
+      .catch(e => console.log(e));
+  }, [setProjects]);
+  if (projects)
+    console.log(
+      projects,
+      projects.filter(project => project.nightmare !== null).length
+    );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>SOLO API</h1>
+      {projects ? <Stats projects={projects} /> : null}{" "}
     </div>
   );
 }

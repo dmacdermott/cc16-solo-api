@@ -1,0 +1,35 @@
+#stats-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 25px;
+}
+.stats {
+  margin-bottom: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.stats-heading {
+  text-align: center;
+  cursor: pointer;
+}
+.stat {
+  text-align: center;
+  font-style: italic;
+}
+#basic-stat-underline {
+  border-bottom: 5px solid #00ffcc;
+}
+#medium-stat-underline {
+  border-bottom: 5px solid #ffff00;
+}
+#advanced-stat-underline {
+  border-bottom: 5px solid #ff00cc;
+}
+#nightmare-stat-underline {
+  border-bottom: 5px solid #cc00ff;
+}
+#todo-stat-underline {
+  border-bottom: 5px solid #4a08e4;
+}
