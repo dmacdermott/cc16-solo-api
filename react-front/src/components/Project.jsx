@@ -1,8 +1,9 @@
 import React from "react";
+import "./project.css";
 
 const Project = ({ project }) => {
   return (
-    <div className="project-wrapper" key={project.id}>
+    <div className="project-wrapper project-card" key={project.id}>
       <div className="edit-wrapper">
         <a href="#" value="" className="edit-link">
           {" "}
@@ -35,19 +36,28 @@ const Project = ({ project }) => {
       <div className="progress-wrapper">
         <div className="req">
           <h4>BASIC</h4>
-          <div className="status basic-status">{project.basic_req}</div>
+          <div className="status basic-status">
+            {project.basic_req ? "👍" : project.basic_req.toString()}
+          </div>
         </div>
         <div className="req">
           <h4>MEDIUM</h4>
-          <div className="status med-status">{project.med_req}</div>
+          <div className="status med-status">
+            {project.med_req !== null ? project.med_req.toString() : "null"}
+          </div>
         </div>
         <div className="req">
           <h4>ADVANCED</h4>
-          <div className="status adv-status">{project.adv_req}</div>
+          <div className="status adv-status">
+            {project.adv_req !== null ? project.adv_req.toString() : "null"}
+          </div>
         </div>
         <div className="req">
           <h4>NIGHTMARE</h4>
-          <div className="status nightmare-status"> {project.nightmare}</div>
+          <div className="status nightmare-status">
+            {" "}
+            {project.nightmare !== null ? project.nightmare.toString() : "null"}
+          </div>
         </div>
       </div>
     </div>

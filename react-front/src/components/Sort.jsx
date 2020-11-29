@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./sort.css";
 
-function Sort({ allProjects }) {
+function Sort({ allProjects, getProjectName, getSingleProject }) {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
     if (allProjects)
       setTypes([...new Set(allProjects.map(projects => projects.type))]);
-  }, []);
+  }, [allProjects]);
 
   const options = types.map((type, index) => (
     <option key={index} value={type}>
@@ -27,15 +27,36 @@ function Sort({ allProjects }) {
             className="sort-by-select"
             id="sort-by-select-type"
           >
-            <option disabled hidden value="" id="hidden-option"></option>
-            <option value="all">All</option>
+            <option
+              key={"hidden-option"}
+              disabled
+              hidden
+              value=""
+              id="hidden-option"
+            ></option>
+            <option key="all-option" value="all">
+              All
+            </option>
             {options}
           </select>
         </div>
         <div className="sort-col">
           <label>🔎 Search by name:</label>
-          <input id="search-by-name" type="search" />
-          <input type="button" value="Search" id="search-for-project" />
+          <input
+            htmlFor="search-by-name"
+            type="search"
+            onChange={event => {
+              getProjectName(event.target.value);
+            }}
+          />
+          <input
+            type="button"
+            value="Search"
+            id="search-for-name"
+            onClick={() => {
+              getSingleProject();
+            }}
+          />
         </div>
         <div className="sort-col">
           <label>👨‍💻 Add New Project:</label>
